@@ -1,0 +1,47 @@
+{% extends "class_info/base.html" %}
+
+{% block content %}
+    <h2>{{ facul_argument.2 }}</h2>
+    <h2>result
+
+        <!-
+        rasult.query
+            0 class, 1 prof
+        result.count
+            10 hit
+        ->
+
+        {{ result.query.0 }}/{{ result.query.1 }}/{{ result.count }} hit</h2>
+
+
+    {% if not result.classes %}     <!- if 全学部0件 ->
+        <h3>Not Hit</h3>
+    {% endif %}
+
+
+    {% for class in result.classes %}   <!- for class in 検索結果全体 ->
+
+        <!-
+            class.0.
+                0 pure_class, 1 prof, 2 semes, 3 class(0+1+2)
+        ->
+
+        <h3><a href="{% url 'class' facul=facul_argument.1 clas=class.0.3 %}">{{ class.0.0 }}</a>
+            <a href="{% url 'top_search' prof=class.0.1 %}">{{ class.0.1 }}</a> {{ class.0.2 }}<br></h3>
+
+        楽単：{{ class.1.0 }}     <!- ease ->
+        /A以上：{{ class.2.0 }}    <!- aplus ->
+        /充実度：{{ class.3.0 }}    <!- fulfil ->
+        /男女比：{{ class.4.0 }}   <!- gender ->
+        /学年比：{{ class.5.0 }}   <!- grade ->
+
+    {% endfor %}
+
+    <h2>Wanna Crete New?</h2>
+    <form method="POST">{% csrf_token %}
+        科目名: {{ result.form.clas }}<br>学期: {{ result.form.semes }}<br>教員: {{ result.form.prof }}<br>
+        楽単:{{ result.form.ease }}<br>A以上:{{ result.form.aplus }}<br>充実度:{{ result.form.fulfil }}<br>
+        コメント:{{ result.form.comme }}<br>{{ result.form.reply.as_hidden }}
+        {{ result.form.contributor.as_hidden }}{{ result.form.like.as_hidden }}{{ result.form.date.as_hidden }}
+        <button type="submit">Post</button></form>
+{% endblock %}

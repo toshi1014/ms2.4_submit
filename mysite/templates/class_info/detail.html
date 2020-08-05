@@ -1,0 +1,18 @@
+{% extends "class_info/base.html" %}
+
+{% block content %}
+    <h2>detail</h2>
+        <h2>{{ detail.clas }}</h2>
+        学期：{{ detail.semes }}<br>教員：{{ detail.prof }}<br>
+        {% if not detail.ease == "None" %}      <!- form2 からの投稿は非表示 ->
+            楽単：{{ detail.ease }}<br>
+            A以上：{{ detail.aplus }}<br>充実度：{{ detail.fulfil }}<br>
+        {% endif %}
+        {% if not detail.comme == "None" %}     <!- form1 からの投稿は非表示 ->
+            comment：{{ detail.comme }}<br>
+        {% endif %}
+        contributor：{{ detail.contributor }}<br>gender：{{ user.0 }}<br>grade：{{ user.1 }}<br>
+        date：{{ detail.date }}
+
+    <h3><a href="{% url "class" facul=facul clas=detail.clas %}">back</a></h3>
+{% endblock %}

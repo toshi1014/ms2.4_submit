@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>my page</h2>
+<h3>< {{ user.username }} ></h3>
+<h3><a href="{% url 'class_info' %}">class_info</a></h3>
+<h3><a href="{% url 'logout' %}">logout</a></h3><br>
+
+<h3>favorite_class</h3>
+<!-
+    res.fav_class.
+        0 facul, 1 class
+->
+
+{% for clas in res.fav_class %}
+    <a href="{% url 'class' facul=clas.0 clas=clas.1 %}">{{ clas.1 }}</a><br>
+{% endfor %}
+</body>
+</html>

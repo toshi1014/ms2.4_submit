@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-
+    res.name
+        contributor
+->
+
+<h2>comment list<br>< {{ res.name }} ></h2>
+
+
+<!-
+    res.comments.  - facul
+        0 sum_posts, 1 facul_html, 2 comments[0 class, 1 comment, 2 pk]
+->
+
+{% for comments in res.comments %}
+        {% if not comments.0 == 0 %}
+            <h2>{{ comments.1.2 }} / {{ comments.0 }} Hits</h2>
+        {% endif %}
+        {% for comment in comments.2 %}
+        <h3><a href="{% url 'class' facul=comments.1.1 clas=comment.0 %}">{{ comment.0 }}</a>:
+            <a href="{% url 'detail' facul=comments.1.1 clas=comment.0 pk=comment.2 %}">{{ comment.1 }}</a></h3>
+        {% endfor %}
+
+{% endfor %}
+
+</body>
+</html>

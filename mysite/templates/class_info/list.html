@@ -1,0 +1,31 @@
+{% extends "class_info/base.html" %}
+
+{% block content %}
+    <h2><a href="{% url 'ranking' facul=facul_argument.1 %}">ranking</a></h2>
+    <h2>{{ facul_argument.2 }}</h2>
+    <form  action="{% url 'search' facul=facul_argument.1 %}" method="get">
+          class<input type="text" name="clas">
+          professor<input type="text" name="prof">
+        <button type="submit">search</button>
+    </form><br>
+
+
+    {% for clas in classes %}
+
+        <!-
+            clas.0
+                0 pure_class, 1 prof, 2 semes, 3 class(0+1+2)
+        ->
+    <br>
+        科目名：<a href="{% url 'class' facul=facul_argument.1 clas=clas.0.3 %}">{{ clas.0.0 }}</a><br>
+        学期　：<a href="{% url 'top_search' prof=clas.0.1 %}">{{ clas.0.1 }}</a><br>
+        教員名：{{ clas.0.2 }}<br>
+        楽単　：{{ clas.1.0 }}      <!- ease ->
+        /A以上：{{ clas.2.0 }}     <!- aplus ->
+        /充実度：{{ clas.3.0 }}     <!- fulfil ->
+        /男女比：{{ clas.4.0 }}    <!- gender ->
+        /学年比：{{ clas.5.0 }}    <!- grade ->
+        <br>
+        --------------------------------------------------------------------------------------------------
+    {% endfor %}
+{% endblock %}

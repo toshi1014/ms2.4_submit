@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>reply</h1>
+<a href="{% url 'faculty_list' %}">back</a>
+<h2>{{ res.clas }}</h2>
+
+<!- res.replied の要素名はdbそのまま ->
+
+<h3>Re. {{ res.replied.comme }} by {{ res.replied.contributor }}</h3>
+<form method="POST" >{% csrf_token %}
+    {{ res.form.re_comme }}{{ res.form.contributor.as_hidden }}
+    {{ res.form.date.as_hidden }}{{ res.form.like.as_hidden }}
+    <button type="submit">Reply</button></form><br>
+
+{% if not res.rep_sum == 0 %}   <!- if no reply ->
+    {{ res.rep_sum }} reply<br>
+{% endif %}
+
+{% for rep in res.rep_list %}
+    <a href="{% url 'add_re_like' pk=rep.0 sign=rep.1 %}">  <!- rep.0 pk ->
+        {% if rep.1 == 0 %} <!- if sign == True ->
+            ♡
+        {% else %}
+            ♥
+        {% endif %}
+    </a>
+    Re. {{ rep.2 }}     <!- re_comme ->
+    /{{ rep.3 }}        <!- contributor ->
+    /like {{ rep.4 }}   <!- like ->
+    /date {{ rep.5 }}   <!- date ->
+    <br>
+{% endfor %}
+</body>
+</html>

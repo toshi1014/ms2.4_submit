@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Maintenance Mode</h2>
+{% if res.state ==  "0" %}
+    <h2>On</h2>
+{% else %}
+    <h2>Off</h2>
+{% endif %}
+<form method="POST" action="{% url 'sf_maintenance_mode' key=res.key state=res.state %}">
+    {% csrf_token %}
+    <input type="submit"></form>
+<h2><a href="{% url 'sf_control' key=res.key %}">sf_control</a></h2>
+</body>
+</html>

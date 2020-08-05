@@ -1,0 +1,19 @@
+{% extends "class_info/base.html" %}
+
+{% block content %}
+    <h2>faculty_list</h2>
+    <h2><a href="{% url 'list' facul="sk" %}">政経</a></h2>
+    <h2><a href="{% url 'list' facul="sy" %}">商</a></h2>
+    <h2><a href="{% url 'list' facul="ho" %}">法</a></h2>
+    <h2><a href="{% url 'list' facul="sg" %}">社学</a></h2>
+    <h2><a href="{% url 'list' facul="ky" %}">教育</a></h2>
+    <h2><a href="{% url 'list' facul="bu" %}">文</a></h2>
+    <h2><a href="{% url 'list' facul="ko" %}">国教</a></h2>
+    <h2><a href="{% url 'list' facul="bk" %}">文化構想</a></h2>
+    <h2><a href="{% url 'list' facul="ki" %}">基幹</a></h2>
+    <h2><a href="{% url 'list' facul="so" %}">創造</a></h2>
+    <h2><a href="{% url 'list' facul="se" %}">先進</a></h2>
+    <h2><a href="{% url 'list' facul="sp" %}">スポ科</a></h2>
+    <h2><a href="{% url 'list' facul="jk" %}">人間科学部</a></h2>
+    <h2><a href="{% url 'list' facul="ge" %}">GEC</a></h2>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ res.facul_argument.1 }}</h1>
+<h2><a href="{% url 'sf_edit' facul=res.facul_argument.1 key=res.key %}">--- csv_edit ---</h2>
+{% for file in res.csv_files %}
+    {% if forloop.first %}
+        <h2><a href="{% url 'sf_download' key=res.key file=file %}">{{ file }}</a></h2><br>
+    {% else %}
+        <h3><a href="{% url 'sf_download' key=res.key file=file %}">{{ file }}</a></h3>
+    {% endif %}
+{% endfor %}
+</body>
+</html>

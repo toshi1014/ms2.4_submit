@@ -1,0 +1,22 @@
+{% extends "class_info/base.html" %}
+
+{% block content %}
+    <h2>{{ facul_argument.2 }} ranking</h2>
+
+    <!-
+        ranking = [easiest, hardest, aplus...]
+            0 easiest, 1 class&star [0 class, 1 star]
+    ->
+
+    {% for rank in ranking %}
+        <h2>{{ rank.0 }}</h2>
+        {% for r in rank.1 %}
+            {% if not  r.0 == "NoDataYet" %}     <!- NoDataYet で飛ばないように ->
+                <a href="{% url 'class' facul=facul_argument.1 clas=r.0 %}">{{ r.0 }}</a>
+            {% else %}
+                {{ r.0 }}
+            {% endif %}
+            / {{ r.1 }}<br>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

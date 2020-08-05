@@ -1,0 +1,44 @@
+{% extends "class_info/base.html" %}
+
+{% block content %}
+    <h2>result {{ res.query }}  {{ res.counter }} hit</h2>
+
+
+    <!-
+        res.results.
+            0       info[0.0 sum, 1. facul_argument]
+            1.0.0   classes[0.0 pure_class, 0.1 prof, 0.2 semes, 0.0.3 class]
+            1.0.1   [ease]
+            1.0.2   [aplus]
+            1.0.3   [fulfil]    ...
+    ->
+
+
+{% for results in  res.results %}
+    {% if not results.0.0.0 == 0 %}
+        <h3>{{ results.0.1.2 }} {{ results.0.0.0 }} Hit</h3>
+
+        {% for result in  results.1 %}
+            <h3><br>
+                科目名：<a href="{% url 'class' facul=results.0.1.1 clas=result.0.0.3 %}">{{ result.0.0.0 }}</a><br>
+                教員名：<a href="{% url 'top_search' prof=result.0.0.1 %}">{{ result.0.0.1 }}</a><br>
+                学期　：{{ result.0.0.2 }}</h3>
+
+            楽単：{{ result.0.1.0 }}     <!- ease ->
+            /A以上：{{ result.0.2.0 }}    <!- aplus ->
+            /充実度：{{ result.0.3.0 }}    <!- fulfil ->
+            /男女比：{{ result.0.4.0 }}   <!- gender ->
+            /学年比：{{ result.0.5.0 }}   <!- grade ->
+            <br>----------------------------------------------------------------------------------
+
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+
+
+    {% if not res.counter %}
+        <h2>No Hit</h2>
+    {% endif %}
+
+
+{% endblock %}

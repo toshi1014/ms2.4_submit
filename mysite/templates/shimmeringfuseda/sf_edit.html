@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>sk_edit</h2>
+<form method="POST" action="{% url 'sf_syllabus' key=key facul=facul_argument.1 %}">
+    {% csrf_token %}
+    <h3>file_name:csv/class_info/SK/sk_list.csv</h3>
+    only syllas / splitted by "," with no space
+    <input type="text" name="syllabus">
+    <input type="submit">
+    <h3><a href="{% url 'sf_control' key=key %}">sf_control</a></h3>
+</form>
+
+</body>
+</html>

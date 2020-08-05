@@ -1,0 +1,33 @@
+{% extends "class_info/base.html" %}
+
+{% block content %}
+    <h2>result {{ res.query }}  {{ res.counter }} hit</h2>
+
+{% for result in res.results %}
+    {% for values in result %}
+        {% if forloop.first %}
+            {% if not values.0.0 is 0 %}
+                <h3>{{ values.1.2 }} {{ values.0.0 }} hit</h3>
+            {% endif %}
+        {% else %}
+            {% for value in values %}
+                {% if forloop.first %}
+                    <h3><a href="{% url 'class' facul=result.0.1.1 clas=value %}">{{ value }}<br></a></h3>
+                {% endif %}
+                {% if not forloop.first %}
+                    {% for v in  value %}
+                        {{ v }}/
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+    {% endif %}
+{% endfor %}
+{% endfor %}
+
+
+    {% if not res.counter %}
+        <h2>No Hit</h2>
+    {% endif %}
+
+
+{% endblock %}

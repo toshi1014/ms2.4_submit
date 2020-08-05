@@ -1,0 +1,35 @@
+datebase value
+
+clas    科目名
+semes    学期
+prof    先生
+ease    楽単
+aplus   A+以上
+fulfil  内容
+test    小テスト
+exam    試験
+cheat   レジュ持込
+attend  出席
+presen  プレゼン
+assig   課題
+comme   コメント
+date    投稿日
+like    いいね数
+
+
+データベースのクラス名　ファイル名のときは小文字
+
+政経  SK
+商   SY
+法   HO
+社学  SG
+教育  KY
+文   BU
+文構  BK
+
+基幹  KI
+創造  SO
+先進  SE
+
+スポ  SP
+人科  JK

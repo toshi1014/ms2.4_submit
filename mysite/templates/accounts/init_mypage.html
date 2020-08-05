@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>init_mypage</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.name.as_hidden }}
+    gender : {{ form.gender }}
+    grade : {{ form.grade }}
+    {{ form.fav_class.as_hidden }}
+    {{ form.like.as_hidden }}
+    {{ form.re_like.as_hidden }}
+    <input type="submit">
+</form>
+</body>
+</html>
